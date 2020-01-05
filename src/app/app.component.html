@@ -1,0 +1,35 @@
+<div>
+  <h1 class="header"> Post Match Stats </h1>
+  <div class="stats-container">
+    <div class="table-container">
+      <div class="row" *ngFor="let selected of selectedOptions">
+        <ng-container *ngIf="['killMoves', 'neutralOpenerMoves'].includes(selected.id)">
+          <div class="col__left"> {{ selected?.results[0]?.result[0]?.name }} - {{ selected?.results[0]?.result[0]?.count }} </div>
+          <div class="col__center-dark"> {{ selected?.name }}  </div>
+          <div class="col__right"> {{ selected?.results[1]?.result[0]?.name }} - {{ selected?.results[1]?.result[0]?.count }} </div>
+        </ng-container>
+      </div>
+      <br>
+      <div class="row" *ngFor="let selected of selectedOptions">
+        <ng-container *ngIf="['openingsPerKill', 'damageDone', 'avgKillPercent', 'inputsPerMinute', 'damagePerOpening', 'neutralWins', 'earlyKills', 'lateDeaths', 'selfDestructs', 'highDamagePunishes'].includes(selected.id)">
+          <div class="col__left"> {{ selected?.results[0]?.simple?.text }} </div>
+          <div class="col__center"> {{ selected?.name }} </div>
+          <div class="col__right"> {{ selected?.results[1]?.simple?.text }} </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <form>
+    <input type="file" name="file" multiple (change)="onFileSelect($event)"/>
+    <button type="button" (click)="uploadFiles()"> Submit </button>
+  </form>
+  <form [formGroup]="configForm" class="config">
+    <div formArrayName="options" *ngFor="let option of configForm.controls.options.controls; let i = index">
+      <input type="checkbox" [formControlName]="i"> {{slippiData.summary[i].name}}
+    </div>
+    <button type="button" (click)="generateSelectedOptions()"> Generate </button>
+  </form>
+</div>
