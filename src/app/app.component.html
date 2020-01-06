@@ -17,6 +17,32 @@
           <div class="col__right"> {{ selected?.results[1]?.simple?.text }} </div>
         </ng-container>
       </div>
+      <div class="games-container">
+        <div class="game-character-container">
+          <div class="games-character-container__left">
+            <ng-container *ngFor="let game of slippiData?.games">
+              <div class="games-character-img-container">
+                <img [ngClass]="game.players[0].gameResult === 'loser'? 'games-character-img' : 'games-character-img__dark'" [src]="'./assets/images/characters/mario.png'" />
+              </div>
+            </ng-container>
+          </div>
+          <div class="games-character-container__right">
+            <ng-container *ngFor="let game of slippiData?.games">
+              <div class="games-character-img-container">
+                <img [ngClass]="game.players[1].gameResult === 'loser'? 'games-character-img' : 'games-character-img__dark'" [src]="'./assets/images/characters/mario.png'" />
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="games-stage-container">
+          <ng-container *ngFor="let game of slippiData?.games">
+            <div class="games-stage-img-container"> 
+              <img class="games-stage-img" [src]="'./assets/images/stages/' + game.stage.id + '.png'" />
+              <p class="games-length"> {{game?.duration}} </p>
+            </div>
+          </ng-container>
+        </div> 
+      </div>
     </div>
   </div>
 </div>
@@ -30,6 +56,6 @@
     <div formArrayName="options" *ngFor="let option of configForm.controls.options.controls; let i = index">
       <input type="checkbox" [formControlName]="i"> {{slippiData.summary[i].name}}
     </div>
-    <button type="button" (click)="generateSelectedOptions()"> Generate </button>
+    <button type="button" (click)="generateStats()"> Generate </button>
   </form>
 </div>

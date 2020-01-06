@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   slippiData: any;
   selectedOptions: any;
+  selectedStages: any;
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient) {}
@@ -40,12 +41,12 @@ export class AppComponent implements OnInit {
     }
   }
 
-  uploadFiles(){    
+  uploadFiles(){
     this.http.post(this.API + '/uploadFiles', this.formData).subscribe(data => {
       this.slippiData = data;
       this.selectedOptions = [];
       this.addCheckboxes();
-      this.generateSelectedOptions();
+      this.generateStats();
     });
   }
 
@@ -60,7 +61,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  generateSelectedOptions() {
+  generateStats() {
     let selected = [];
     (this.configForm.controls.options as FormArray).controls.forEach((control, i) => {
       if (control.value === true) {
@@ -68,5 +69,20 @@ export class AppComponent implements OnInit {
       }
     });
     this.selectedOptions = selected;
+
+    let stages = [];
+    for (const game of this.slippiData.games) {
+      let href: string = '';
+      switch (game.stage.id) {
+        case 31:
+          href = './assets/images/battlefield.png';
+          break;
+        case 28: 
+          href = './assets/images/dreamland.png';
+          break;
+      }
+      stages.push(href);
+    }
+    this.selectedStages = stages;
   }
 }
