@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient) {}
-   
+
   ngOnInit() {
     this.formData = new FormData();
     this.configForm = this.formBuilder.group({
@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   }
 
   generateStats() {
-    let selected = [];
+    const selected = [];
     (this.configForm.controls.options as FormArray).controls.forEach((control, i) => {
       if (control.value === true) {
         selected.push(this.slippiData.summary[i]);
@@ -70,14 +70,14 @@ export class AppComponent implements OnInit {
     });
     this.selectedOptions = selected;
 
-    let stages = [];
+    const stages = [];
     for (const game of this.slippiData.games) {
-      let href: string = '';
+      let href = '';
       switch (game.stage.id) {
         case 31:
           href = './assets/images/battlefield.png';
           break;
-        case 28: 
+        case 28:
           href = './assets/images/dreamland.png';
           break;
       }
