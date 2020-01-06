@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 
   slippiData: any;
   selectedOptions: any;
-  selectedStages: any;
 
   constructor(private formBuilder: FormBuilder, 
               private http: HttpClient) {}
@@ -69,20 +68,5 @@ export class AppComponent implements OnInit {
       }
     });
     this.selectedOptions = selected;
-
-    const stages = [];
-    for (const game of this.slippiData.games) {
-      let href = '';
-      switch (game.stage.id) {
-        case 31:
-          href = './assets/images/battlefield.png';
-          break;
-        case 28:
-          href = './assets/images/dreamland.png';
-          break;
-      }
-      stages.push(href);
-    }
-    this.selectedStages = stages;
   }
 }

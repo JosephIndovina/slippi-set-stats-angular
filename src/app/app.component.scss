@@ -51,7 +51,7 @@
 
 
 .table-container {
-    font-size: 18pt;
+    font-size: 15pt;
     padding: .5em;
     margin-left: auto; 
     margin-right: auto;
@@ -60,7 +60,6 @@
 
 .games {
     &-container {
-        margin-top: 10px;
         margin-left: auto; 
         margin-right: auto;
     }
@@ -73,7 +72,7 @@
 
         &-img {
             flex: 1 0 18%;
-            max-width: 135px;
+            max-width: 160px;
             margin: 5px;
             filter: brightness(60%);
             box-shadow: 2px 3px 10px #00000087;
