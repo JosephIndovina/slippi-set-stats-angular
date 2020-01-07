@@ -10,19 +10,15 @@ import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   // Global Constants
-  title = 'slippi-stats';
-  API = environment.API;
+  private API = environment.API;
 
-  // Form Data
-  files: File[];
-  formData: FormData;
-  configForm: FormGroup;
+  // Component objects and variables
+  public formData: FormData;
+  public configForm: FormGroup;
+  public slippiData: any;
+  public selectedOptions: any;
 
-  // Slippi Data
-  slippiData: any;
-  selectedOptions: any;
-
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
               private http: HttpClient) {}
 
   ngOnInit() {
@@ -32,32 +28,38 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onFileSelect(event) {
+  onFileSelect(event: any) {
+    // Clear previously selected files
     this.formData.delete('file');
+
+    // Append new files to formData
     if (event.target.files.length > 0) {
       const files = event.target.files;
+      // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < files.length; i++) {
         this.formData.append('file', files[i]);
       }
     }
   }
 
-  uploadFiles(){
+  onUploadFiles() {
     this.http.post(this.API + '/uploadFiles', this.formData).subscribe(data => {
       this.slippiData = data;
-      this.selectedOptions = [];
-      this.addCheckboxes();
+      this.generateCheckboxes();
       this.generateStats();
     });
   }
 
-  addCheckboxes() {
+  generateCheckboxes() {
+    // Reset Form
+    this.selectedOptions = [];
     this.configForm.controls.options = new FormArray([]);
 
-    const defaults = [0,3,4,8,9,11];
+    // Auto-fill form with defaults
+    const defaults = [0, 3, 4, 8, 9, 11];
     this.slippiData.summary.forEach((item, i) => {
       const control = new FormControl(i);
-      control.setValue(defaults.includes(i)? true : false);
+      control.setValue(defaults.includes(i) ? true : false);
       (this.configForm.controls.options as FormArray).push(control);
     });
   }
@@ -72,7 +74,7 @@ export class AppComponent implements OnInit {
     this.selectedOptions = selected;
   }
 
-  getPlayerWins(playerNum){
+  getPlayerWins(playerNum: number) {
     return this.slippiData.games.reduce(((numWon, curVal) => {
       console.log(numWon, curVal);
       return curVal.players[playerNum].gameResult === 'winner' ? numWon + 1 : numWon;

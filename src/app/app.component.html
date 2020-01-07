@@ -1,53 +1,53 @@
 <div>
-  <h1 class="header"> Post Match Stats </h1>
-  <div class="stats-container" *ngIf="slippiData">
-    <div class="table-container">
-      <div class="row" *ngFor="let selected of selectedOptions">
+  <h1 class="stats__header"> Post Match Stats </h1>
+  <div class="stats__container" *ngIf="slippiData">
+    <div class="table__container">
+      <div class="table__row" *ngFor="let selected of selectedOptions">
         <ng-container *ngIf="['killMoves', 'neutralOpenerMoves'].includes(selected.id)">
-          <div class="col__left"> {{ selected?.results[0]?.result[0]?.name }} - {{ selected?.results[0]?.result[0]?.count }} </div>
-          <div class="col__center-dark"> {{ selected?.name }}  </div>
-          <div class="col__right"> {{ selected?.results[1]?.result[0]?.name }} - {{ selected?.results[1]?.result[0]?.count }} </div>
+          <div class="table__col--left"> {{ selected?.results[0]?.result[0]?.name }} - {{ selected?.results[0]?.result[0]?.count }} </div>
+          <div class="table__col--center--dark"> {{ selected?.name }}  </div>
+          <div class="table__col--right"> {{ selected?.results[1]?.result[0]?.name }} - {{ selected?.results[1]?.result[0]?.count }} </div>
         </ng-container>
       </div>
-      <hr class="table-separator__lg" />
-      <div class="row" *ngFor="let selected of selectedOptions">
+      <hr class="table__separator--lg" />
+      <div class="table__row" *ngFor="let selected of selectedOptions">
         <ng-container *ngIf="['openingsPerKill', 'damageDone', 'avgKillPercent', 'inputsPerMinute', 'damagePerOpening', 'neutralWins', 'earlyKills', 'lateDeaths', 'selfDestructs', 'highDamagePunishes'].includes(selected.id)">
-          <div class="col__left"> {{ selected?.results[0]?.simple?.text }} </div>
-          <div class="col__center"> {{ selected?.name }} </div>
-          <div class="col__right"> {{ selected?.results[1]?.simple?.text }} </div>
+          <div class="table__col--left"> {{ selected?.results[0]?.simple?.text }} </div>
+          <div class="table__col--center"> {{ selected?.name }} </div>
+          <div class="table__col--right"> {{ selected?.results[1]?.simple?.text }} </div>
         </ng-container>
       </div>
-      <hr class="table-separator__md" />
-      <div class="games-container">
-        <div class="games-character-container">
-          <div class="games-character-container__left">
+      <hr class="table__separator--md" />
+      <div class="games__container">
+        <div class="games__character__container">
+          <div class="games__character__container--left">
             <ng-container *ngFor="let game of slippiData?.games">
-              <div class="games-character-img-container">
-                <img [ngClass]="game.players[0].gameResult === 'winner'? 'games-character-img' : 'games-character-img__dark'" [src]="'./assets/images/characters/' + game.players[0].characterId + '.png'" />
+              <div class="games__character__img-container">
+                <img [ngClass]="game.players[0].gameResult === 'winner'? 'games__character__img' : 'games__character__img--dark'" [src]="'./assets/images/characters/' + game.players[0].characterId + '.png'" />
               </div>
             </ng-container>
           </div>
-          <div class="games-character-container__right">
+          <div class="games__character__container--right">
             <ng-container *ngFor="let game of slippiData?.games">
-              <div class="games-character-img-container">
-                <img [ngClass]="game.players[1].gameResult === 'winner'? 'games-character-img' : 'games-character-img__dark'" [src]="'./assets/images/characters/' + game.players[1].characterId + '.png'" />
+              <div class="games__character__img__container">
+                <img [ngClass]="game.players[1].gameResult === 'winner'? 'games__character__img' : 'games__character__img--dark'" [src]="'./assets/images/characters/' + game.players[1].characterId + '.png'" />
               </div>
             </ng-container>
           </div>
         </div>
-        <div class="games-stage-container">
+        <div class="games__stage__container">
           <ng-container *ngFor="let game of slippiData?.games">
-            <div class="games-stage-img-container"> 
-              <img class="games-stage-img" [src]="'./assets/images/stages/' + game.stage.id + '.png'" />
-              <p class="games-length"> {{game?.duration}} </p>
+            <div class="games__stage__img__container"> 
+              <img class="games__stage__img" [src]="'./assets/images/stages/' + game.stage.id + '.png'" />
+              <p class="games__length"> {{game?.duration}} </p>
             </div>
           </ng-container>
         </div> 
       </div>
     </div>
     
-    <div class="games-set-count-container">
-      <div class="games-set-count">
+    <div class="games__set-count__container">
+      <div class="games__set-count">
         {{getPlayerWins(0)}} - {{getPlayerWins(1)}}
       </div>
     </div>
@@ -56,13 +56,13 @@
 
 <div>
   <form>
-    <input class="card-button" type="file" name="file" multiple (change)="onFileSelect($event)"/>
-    <button class="card-button" type="button" (click)="uploadFiles()"> Submit </button>
+    <input class="stats__config__button" type="file" name="file" multiple (change)="onFileSelect($event)"/>
+    <button class="stats__config__button" type="button" (click)="onUploadFiles()"> Submit </button>
   </form>
-  <form [formGroup]="configForm" class="config">
+  <form [formGroup]="configForm" class="stats__config">
     <div formArrayName="options" *ngFor="let option of configForm.controls.options.controls; let i = index">
       <input type="checkbox" [formControlName]="i"> {{slippiData.summary[i].name}}
     </div>
-    <button class="card-button" type="button" (click)="generateStats()"> Generate </button>
+    <button class="stats__config__button" type="button" (click)="generateStats()"> Generate </button>
   </form>
 </div>
