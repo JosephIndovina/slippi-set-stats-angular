@@ -56,13 +56,13 @@
 
 <div>
   <form>
-    <input type="file" name="file" multiple (change)="onFileSelect($event)"/>
-    <button type="button" (click)="uploadFiles()"> Submit </button>
+    <input class="card-button" type="file" name="file" multiple (change)="onFileSelect($event)"/>
+    <button class="card-button" type="button" (click)="uploadFiles()"> Submit </button>
   </form>
   <form [formGroup]="configForm" class="config">
     <div formArrayName="options" *ngFor="let option of configForm.controls.options.controls; let i = index">
       <input type="checkbox" [formControlName]="i"> {{slippiData.summary[i].name}}
     </div>
-    <button type="button" (click)="generateStats()"> Generate </button>
+    <button class="card-button" type="button" (click)="generateStats()"> Generate </button>
   </form>
 </div>
