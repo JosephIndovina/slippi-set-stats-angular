@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  // Global Constants
   title = 'slippi-stats';
   API = environment.API;
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
   formData: FormData;
   configForm: FormGroup;
 
+  // Slippi Data
   slippiData: any;
   selectedOptions: any;
 
@@ -68,5 +70,12 @@ export class AppComponent implements OnInit {
       }
     });
     this.selectedOptions = selected;
+  }
+
+  getPlayerWins(playerNum){
+    return this.slippiData.games.reduce(((numWon, curVal) => {
+      console.log(numWon, curVal);
+      return curVal.players[playerNum].gameResult === 'winner' ? numWon + 1 : numWon;
+    }), 0);
   }
 }

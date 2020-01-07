@@ -1,11 +1,21 @@
+$colour-light: white;
+$colour-dark: #0c0c0c;
+$font-xl: 40pt;
+$font-lg: 28pt;
+$font-md: 26pt;
+$shadow: 3px 2px 5px black;
+$img-shadow: 2px 3px 10px #00000087;
+$card-padding: 14px 12px;
+$card-margin: 3px auto;
+
+
 .header {
-    font-size: 34pt;
+    font-size: $font-xl;
     text-align: center;
 }
 
 .stats-container {
     margin: 50px 450px; 
-    background-color: rgba(0, 0, 0, 0.5)
 }
 
 .row {
@@ -15,47 +25,60 @@
 .col {
     &__left {
         padding: .6em 0;
-        width: 150px;
+        width: 275px;
     }
 
     &__right {
         justify-content: right;
         text-align: right;
-        width: 150px;
+        width: 275px;
         padding: .6em 0;
     }
 
     &__center {
-        font-size: 24pt;
-        color: black;
-        background-color: white;
-    
-        margin: 3px auto;
-        padding: 3px 12px;
+        font-size: $font-lg;
+        color: $colour-dark;
+        background-color: $colour-light;
+        margin: $card-margin;
+        padding: $card-padding;
         justify-content: center;
-    
-        box-shadow: 3px 2px 5px black;
+        box-shadow: $shadow;
 
         &-dark {
-            font-size: 24pt;
-            background-color: #0c0c0c;
-            color: white;        
-            margin: 3px auto;
-            padding: 3px 12px;
+            font-size: $font-lg;
+            background-color: $colour-dark;
+            color: $colour-light;        
+            margin: $card-margin;
+            padding: $card-padding;
             justify-content: center;
-            box-shadow: 3px 2px 5px black;
+            box-shadow: $shadow;
         }
     }
 
 }
 
 
-.table-container {
-    font-size: 15pt;
-    padding: .5em;
-    margin-left: auto; 
-    margin-right: auto;
-    box-shadow: 2px 3px 10px #00000087;
+.table {
+    &-container{
+        font-size: $font-md;
+        padding: 0.7em 0.5em;
+        margin-left: auto; 
+        margin-right: auto;
+        box-shadow: $img-shadow;
+        background-color: rgba(0, 0, 0, 0.5)
+    }
+
+    &-separator{
+        &__lg {
+            width: 90%;
+        }
+        &__md {
+            width: 75%;
+        }
+        &__md {
+            width: 50%;
+        }
+    }
 }
 
 .games {
@@ -72,10 +95,10 @@
 
         &-img {
             flex: 1 0 18%;
-            max-width: 160px;
+            max-width: 300px;
             margin: 5px;
             filter: brightness(60%);
-            box-shadow: 2px 3px 10px #00000087;
+            box-shadow: $img-shadow;
     
             &-container {
                 position: relative;
@@ -88,6 +111,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -135%);
+        font-size: $font-xl;
     }
 
     &-character {
@@ -105,25 +129,35 @@
         }
         
         &-img {
+            width: 120px;
             margin: 5px;
-            box-shadow: 2px 3px 10px #00000087;
+            box-shadow: $img-shadow;
         }
 
         &-img__dark {
+            width: 120px;
             margin: 5px;
             filter: brightness(60%);
-            box-shadow: 2px 3px 10px #00000087;
+            box-shadow: $img-shadow;
         }
+    }
+
+    &-set-count {
+        &-container {
+            display: flex;
+        }
+
+        font-size: $font-lg;
+        background-color: $colour-dark;
+        color: $colour-light;
+        margin: $card-margin;
+        padding: $card-padding;
+        justify-content: center;
+        box-shadow: $shadow;
+        transform: translate(0px, -30px);
     }
 }
 
 .config {
-    color: black;
-}
-
-html {
-    width: 1920;
-    height: 1080px;
-    color: #fff;
-    background: #00FF00;
+    color: $colour-dark;
 }
