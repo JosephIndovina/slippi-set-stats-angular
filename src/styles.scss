@@ -1,8 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: Oleo Script;
-  src: url(assets/fonts/OleoScript-Regular.ttf) format("truetype");
+  src: url('/assets/fonts/OleoScript-Regular.ttf') format("truetype");
 }
+
+// Note that current values are meant to be viewed at 2560x1440, in an OBS browser
+// In the future id like this to be responsive 
+$colour-light: white;
+$colour-dark: #0c0c0c;
+$font-xl: 40pt;
+$font-lg: 28pt;
+$font-md: 26pt;
+$font-sm: 20pt;
+$font-xs: 16pt;
+$font-xxs: 12pt;
+$shadow: 3px 2px 5px black;
+$img-shadow: 2px 3px 10px #00000087;
+$card-padding: 14px 12px;
+$card-margin: 3px auto;
+$character-img-width: 120px;
+$stage-img-width: 300px;
+$table-column-width: 275px;
 
 html {
     font-family: 'Oleo Script', cursive;

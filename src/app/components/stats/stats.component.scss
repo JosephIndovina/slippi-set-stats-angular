@@ -1,0 +1,150 @@
+@import '../../../styles.scss';
+
+.stats {
+    &__container {
+        margin: 50px 450px; 
+    }
+
+    &__header {
+        font-size: $font-xl;
+        text-align: center;
+    }
+}
+
+.table {
+    &__container{
+        font-size: $font-md;
+        padding: 0.7em 0.5em;
+        margin-left: auto; 
+        margin-right: auto;
+        box-shadow: $img-shadow;
+        background-color: rgba(0, 0, 0, 0.5)
+    }
+
+    &__separator{
+        &--lg {
+            width: 90%;
+        }
+        &--md {
+            width: 75%;
+        }
+        &--md {
+            width: 50%;
+        }
+    }
+
+    &__row {
+        display: flex;
+    }
+
+    &__col {
+        &--left {
+            padding: .6em 0;
+            width: $table-column-width;
+        }
+    
+        &--right {
+            justify-content: right;
+            text-align: right;
+            width: $table-column-width;
+            padding: .6em 0;
+        }
+    
+        &--center {
+            font-size: $font-lg;
+            color: $colour-dark;
+            background-color: $colour-light;
+            margin: $card-margin;
+            padding: $card-padding;
+            justify-content: center;
+            box-shadow: $shadow;
+    
+            &--dark {
+                font-size: $font-lg;
+                background-color: $colour-dark;
+                color: $colour-light;        
+                margin: $card-margin;
+                padding: $card-padding;
+                justify-content: center;
+                box-shadow: $shadow;
+            }
+        }
+    }
+}
+
+.games {
+    &__container {
+        margin-left: auto; 
+        margin-right: auto;
+    }
+
+    &__stage {
+        &__container {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        &__img {
+            flex: 1 0 18%;
+            max-width: $stage-img-width;
+            margin: 5px;
+            filter: brightness(60%);
+            box-shadow: $img-shadow;
+    
+            &__container {
+                position: relative;
+            }
+        }
+    }
+
+    &__length {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -135%);
+        font-size: $font-xl;
+    }
+
+    &__character {
+        &__container {
+            &--left {
+                width: 50%;
+                display: inline-flex;
+                justify-content: space-evenly;
+            }
+            &--right {
+                width: 50%;
+                display: inline-flex;
+                justify-content: space-evenly;
+            }
+        }
+        
+        &__img {
+            width: $character-img-width;
+            margin: 5px;
+            box-shadow: $img-shadow;
+
+            &--dark {
+                width: $character-img-width;
+                margin: 5px;
+                filter: brightness(60%);
+                box-shadow: $img-shadow;
+            }
+        }
+    }
+
+    &__set-count {
+        &__container {
+            display: flex;
+        }
+
+        font-size: $font-lg;
+        background-color: $colour-dark;
+        color: $colour-light;
+        margin: $card-margin;
+        padding: $card-padding;
+        justify-content: center;
+        box-shadow: $shadow;
+        transform: translate(0px, -30px);
+    }
+}

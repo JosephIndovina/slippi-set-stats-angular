@@ -1,0 +1,10 @@
+<h1 class="config__header"> Slippi Stats Configuration </h1>
+<form [formGroup]="configForm" class="config">
+    <input class="config__button" type="file" name="file" accept=".slp" multiple (change)="onFileSelect($event)"/>
+    <br>
+    <div formArrayName="options" *ngFor="let option of configForm.controls.options.controls; let i = index">
+        <input type="checkbox" class="config__checkbox" [formControlName]="i"> {{slippiData.summary[i].name}}
+    </div>
+    <button class="config__button" type="button" (click)="onUploadFiles()"> Submit </button>
+    <button class="config__button" type="button" (click)="generateStats()"> Update </button>
+</form>
