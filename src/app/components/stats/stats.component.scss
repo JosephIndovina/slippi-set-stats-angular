@@ -18,7 +18,7 @@
         margin-left: auto; 
         margin-right: auto;
         box-shadow: $img-shadow;
-        background-color: rgba(0, 0, 0, 0.5)
+        background-color: rgba(0, 0, 0, 0.75)
     }
 
     &__separator{
@@ -39,7 +39,7 @@
 
     &__col {
         &--left {
-            padding: .6em 0;
+            padding: .6em 1em;
             width: $table-column-width;
         }
     
@@ -47,7 +47,7 @@
             justify-content: right;
             text-align: right;
             width: $table-column-width;
-            padding: .6em 0;
+            padding: .6em 1em;
         }
     
         &--center {
